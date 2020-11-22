@@ -13,7 +13,7 @@ import (
 func login(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("method:", r.Method) //获取请求的方法
 	if r.Method == "GET" {
-		var loginPage string = os.Getenv("GOPATH") + "github.com/zz9629/cloudgo/resource/login.gtpl"
+		var loginPage string = os.Getenv("GOPATH") + "github.com/zwx2000/cloudgo/resource/login.gtpl"
 		t, _ := template.ParseFiles(loginPage)
 		log.Println(t.Execute(w, nil))
 	} else {
