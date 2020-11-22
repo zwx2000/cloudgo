@@ -7,9 +7,25 @@ import(
 	"github.com/martini-contrib/binding"
 )
 
+<<<<<<< HEAD
 type Post struct {
 	Username string `form:"username" binding:"required"`
 	Password string `form:"password" binding:"required"`
+=======
+
+func login(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("method:", r.Method) //获取请求的方法
+	if r.Method == "GET" {
+		var loginPage string = os.Getenv("GOPATH") + "github.com/zwx2000/cloudgo/resource/login.gtpl"
+		t, _ := template.ParseFiles(loginPage)
+		log.Println(t.Execute(w, nil))
+	} else {
+		r.ParseForm()
+		//请求的是登录数据，那么执行登录的逻辑判断
+		fmt.Fprintf(w, "username: %s\n", r.Form["username"])
+		fmt.Fprintf(w, "password: %s\n", r.Form["password"])
+	}
+>>>>>>> e7c00d7f590522d8e8d696d5129959f870e80c00
 }
 
 func Begin(port string) { 
