@@ -1,29 +1,27 @@
 package main
 
 import (
+	"github.com/zwx2000/cloudgo/server"
 	"os"
-	"github.com/zwx2000/cloudgo/service"
-	flag "github.com/spf13/pflag"
+	"github.com/spf13/pflag"
 )
 
-// Default cloudgo network port 8080
-const (
-	PORT string = "8080"
-)
 
-func main() {
+func main(){
 	port := os.Getenv("PORT")
-	if len(port) == 0 {
-		port = PORT
+
+	//设置默认监听端口
+	if len(port) == 0{
+		port = "4869"
 	}
 
-	// use pflag to get the parameter -p
-	pPort := flag.StringP("port", "p", PORT, "PORT for httpd listening")
-	flag.Parse()
-	if len(*pPort) != 0 {
-		port = *pPort
+	//从命令行中获取指定的监听端口
+	curPort := pflag.StringP("port", "p", "4869", "Port for listening")
+	pflag.Parse()
+	if len(*curPort) != 0{
+		port = *curPort
 	}
 
-	server := service.NewServer()
-	server.Run(":" + port)
+	//启动服务器
+	server.Begin(port)
 }

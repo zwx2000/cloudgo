@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>User Info</title>
+</head>
+
+<body>
+    <div>
+        <p class="name">Hello, {{.post.Username}}</p>
+        <p class="content">Now is {{.Time}}</p>
+    </div>
+
+    <table>
+        <tr>
+            <th>Username</th>
+            <td>{{.post.Username}}</td>
+        </tr>
+        <tr>
+            <th>Password</th>
+            <td>{{.post.Password}}</td>
+        </tr>
+    </table>
+</body>
+</html>
